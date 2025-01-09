@@ -24,7 +24,6 @@ export const ConfigurationTableConfig = (
         ['id', 'na'],
         ['metadata.name', 'xs'],
         ['apiVersion', 's'],
-        ['data', 's'],
         ['metadata.namespace', 'm'],
         ['cluster_id', 'xs'],
         ['metadata.creationTimestamp', 'l'],
@@ -81,23 +80,6 @@ export const ConfigurationTableConfig = (
             },
           },
         },
-        {
-          name: 'data',
-          label: 'Keys',
-          options: {
-            sort: false,
-            customHeadRender: function CustomHead({ ...column }) {
-              return <DefaultTableCell columnData={column} />;
-            },
-            customBodyRender: function CustomBody(val) {
-              if (!val) return <>-</>;
-              const parseVal = JSON.parse(val);
-              const keys = Object.keys(parseVal);
-              return <>{keys.join(', ')}</>;
-            },
-          },
-        },
-
         {
           name: 'metadata.namespace',
           label: 'Namespace',

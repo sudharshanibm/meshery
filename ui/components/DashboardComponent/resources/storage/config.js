@@ -26,7 +26,6 @@ export const StorageTableConfig = (
         ['apiVersion', 's'],
         ['spec.attribute', 's'],
         ['spec.attribute', 's'],
-        ['spec.attribute', 's'],
         ['status.attribute', 'm'],
         ['cluster_id', 'xs'],
         ['metadata.creationTimestamp', 'l'],
@@ -94,24 +93,8 @@ export const StorageTableConfig = (
             },
             customBodyRender: function CustomBody(val) {
               let attribute = JSON.parse(val);
-              let storageClassName = attribute?.storageClassName;
+              let storageClassName = attribute?.StorageClassName;
               return <>{storageClassName}</>;
-            },
-          },
-        },
-        {
-          name: 'spec.attribute',
-          label: 'Claim',
-          options: {
-            sort: false,
-            customHeadRender: function CustomHead({ ...column }) {
-              return <DefaultTableCell columnData={column} />;
-            },
-            customBodyRender: function CustomBody(val) {
-              let attribute = JSON.parse(val);
-              let claimRef = attribute?.claimRef;
-              let name = claimRef?.name;
-              return <>{name}</>;
             },
           },
         },
@@ -271,7 +254,7 @@ export const StorageTableConfig = (
             },
             customBodyRender: function CustomBody(val) {
               let attribute = JSON.parse(val);
-              let storageClassName = attribute?.storageClassName;
+              let storageClassName = attribute?.StorageClassName;
               return <>{storageClassName}</>;
             },
           },
