@@ -23,8 +23,8 @@ create_auth_file() {
 wait_for_meshery() {
     echo "start: Wait for meshery server to be up"
     # Wait for meshery server to be up
-    while ! mesheryctl system status | grep -q "Meshery Server is running"; do
-        sleep 5
+    while [[ $(mesheryctl system status | grep -c "Running") -ne 4  ]]  ; do
+        sleep 2
     done
     echo "done: Wait for meshery server to be up"
 }
