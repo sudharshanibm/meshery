@@ -20,10 +20,20 @@ create_auth_file() {
     echo "done: authentication configuration"
 }
 
+wait_for_meshery() {
+    echo "start: Wait for meshery server to be up"
+    # Wait for meshery server to be up
+    while ! mesheryctl system status | grep -q "Meshery Server is running"; do
+        sleep 5
+    done
+    echo "done: Wait for meshery server to be up"
+}
+
 main() {
     echo -e "### start: Test environment setup ###\n"
 
     install_mesheryctl "$MESHERY_PLATFORM"
+    wait_for_meshery
     create_auth_file 
     
     export MESHERYCTL_BIN="mesheryctl"
@@ -40,6 +50,7 @@ main() {
 
 
     echo -e "### done: Test environment setup ###\n"
+
 }
 
 
